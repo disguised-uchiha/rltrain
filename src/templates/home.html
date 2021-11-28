@@ -27,30 +27,49 @@
             <th>Book Ticket</th>
           </tr>
         </thead>
-        <tbody onload="getAllData()"></tbody>
+        <tbody></tbody>
       </table>
     </div>
     <div></div>
     <script>
-      console.log("testing");
-      async function getAllData(e) {
+      document.addEventListener("DOMContentLoaded", async function (e) {
         e.preventDefault();
-        const records = await fetch("http://localhost:8000/train/check");
-        console.log("🚀 >>> records", records);
-
+        // const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        // const records = [
+        //   {
+        //     trainNo: 123,
+        //     trainName: "godavari",
+        //     source: "mumbai",
+        //     destination: "varanasi",
+        //     fare: 123,
+        //     availability: "yes"
+        //   },
+        //   {
+        //     trainNo: 1223233,
+        //     trainName: "godavdari1",
+        //     source: "surat",
+        //     destination: "jaipur",
+        //     fare: 123,
+        //     availability: "no"
+        //   }
+        // ];
+		// records = JSON.parse(records);
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
-        const newRow = tbodyRef.insertRow();
         let htmlData = "";
-        newRow.innerHTML = records.forEach(record => {
-          htmlData.concat("tr");
-          record.forEach(data => {
-            htmlData.concat(`<td>${data}</td>`);
+        records.forEach(record => {
+			const newRow = tbodyRef.insertRow();
+			htmlData=""
+		  const keys = Object.keys(record);
+          keys.forEach(key => {
+            htmlData+= `<td>${record[key]}</td>`;
           });
-          htmlData.concat("/tr");
+		  htmlData +=`<td><button type="submit">Book</button></td>`
+		  newRow.innerHTML = htmlData
+
         });
-      }
-      getAllData();
+		console.log(htmlData)
+      });
     </script>
   </body>
 </html>
