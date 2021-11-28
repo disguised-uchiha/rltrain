@@ -15,14 +15,16 @@
     "url": "https://github.com/disguised-uchiha/rltrain/issues"
   },
   "homepage": "https://github.com/disguised-uchiha/rltrain#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0"
-  },
   "devDependencies": {
     "@types/node": "^16.11.10",
-    "cors": "^2.8.5",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.13.13",
-    "typescript": "^4.5.2"
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "app-root-path": "^3.0.0"
   }
 }
