@@ -35,15 +35,17 @@
     <script>
       document.addEventListener("DOMContentLoaded", async function (e) {
         e.preventDefault();
-        const records = await (await fetch("http://localhost:8000/train/check")).json();
+
+        const records = await fetch("https://001f-2409-4040-d17-92ac-f559-54dc-25a1-9be9.ngrok.io/train/check");
+        // const records = await (await fetch("http://localhost:8000/train/check")).json()
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
         let htmlData = "";
+        
         records.forEach(record => {
           const newRow = tbodyRef.insertRow();
           htmlData = "";
-          const { train_no, train_name, source, destination, fare, availability } = record;
-          const keys = [train_no, train_name, source, destination, fare, availability];
+          const keys = Object.keys(record);
           keys.forEach(key => {
             htmlData += `<td>${key}</td>`;
           });
