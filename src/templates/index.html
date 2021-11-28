@@ -14,13 +14,12 @@
     padding: 0px;
     font-family: sans-serif;
     box-sizing: border-box;
-    background-image: url(index.jpg);
+    background-image: url(z-index.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
 h1{
-  color: GrayText;
-  text-shadow: 4px 4px 8px #000000;
+  color: black;
   text-align:center;
   padding-top:40px;
   font-size:30px;
@@ -32,25 +31,35 @@ h1{
 }
 .formWraper{
     display: flex;
-    width: 55%;
-    height: 500px;
-    background-color: yellowgreen;
+    flex-direction: column;
+    width: 35%;
+    height: 25%;
     margin-top: 80px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow:0px 0px 20px black;
+    background-color: rgba(0, 0, 100, 0.8);
+    color: white;
+
+    
 }
  
 /* code for left sectin of form */
 .formDiv{
-    width: 50%;
-    padding: 8%;
-    background-color: lavender;
-    text-align: center;
-    border-radius: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.5rem;
+    /* align-items: center; */
+    /* padding: 8%; */
+    /* background-color: lavender; */
+     /* justify-content: center; */
+    /* border-radius: 10px 0px 0px 10px; */
+    /* background-color: aliceblue;    */
 }
 .formDiv h2 {
-    color: green;
-    margin-top: 140px;
+    color: white;
+    /* padding: 1.5rem; */
+    /* margin-top: 140px; */
 }
 
  
@@ -63,24 +72,30 @@ h1{
 }  
 
 .welcomeDiv h2  {
-    margin-top: 190px;
+    /* margin-top: 190px; */
 }
 
  
 .btn{
     width: 70%;
-    padding: 15px;
+    padding: 1.5rem;
     background-color: green;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     color: lavender;
     border-radius: 20px;
     border-style: none;
+    /* background: transparent; */
+    background-color:transparent;
+    border-radius: 20px;
+    border-style: none;
+    border: 2px solid rgb(247, 243, 243);
 }
+
 .btn2{
     width: 70%;
-    padding: 15px;
+    padding: 1.5rem;
     background-color:transparent;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     color: lavender;
     border-radius: 20px;
     border-style: none;
@@ -88,7 +103,7 @@ h1{
 }
  
 /* CSS mouse hover efects */
-.btn:hover, .btn2:hover,{
+.btn:hover, .btn2:hover{
     background-color: rgb(7, 80, 35);
     color: whitesmoke;
 }
@@ -112,7 +127,7 @@ h1{
             </div>
  
             
-            <div class="welcomeDiv">
+            <div class="formDiv">
                 <h2>Display Train List</h2>
                 
                 <a href="DisplayProduct.html"/"/displayProducts"><button class="btn2">DISPLAY</button></a>
