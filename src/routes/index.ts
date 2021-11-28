@@ -25,6 +25,22 @@ router.get("/check", async (_, res) => {
   }
 });
 
+router.get("/checkUser/:id", async (req, res) => {
+  try {
+    const result = await trainModel.findById(req.params.id);
+    if (!result) {
+      console.log("No data found");
+      res.status(404).send("No data found");
+    } else {
+      console.log("Train data found successfully");
+      res.status(200).json(result);
+    }
+  } catch (error) {
+    console.log("Error Occured while finding train record", error);
+    res.status(500).send("Issue Occurred at Server Side While Finding train record");
+  }
+});
+
 router.patch("/update/:id", async (req, res) => {
   try {
     const recordUpdates = Object.keys(req.body);
