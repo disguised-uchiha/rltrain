@@ -19,4 +19,5 @@ const mongoConnect = async () => {
     process.exit(1);
   }
 };
+
 mongoConnect();

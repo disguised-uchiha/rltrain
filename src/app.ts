@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Database Connection: MONGO
-require("@utils/database/mongo");
+require("./database/mongo");
 
 app.get("/", (_, res) => {
   res.send({
