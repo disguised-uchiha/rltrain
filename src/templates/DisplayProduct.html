@@ -15,7 +15,7 @@
     <div class="container vh-100">
       <h1 class="text-center">All Available Products</h1>
       <div class="table-responsive">
-        <table class="table" id="trainTable">
+        <table class="table table-striped" id="trainTable">
           <thead>
             <tr>
               <th>No</th>
@@ -40,11 +40,12 @@
         records.forEach(record => {
           const newRow = tbodyRef.insertRow();
           htmlData = "";
-          const keys = Object.keys(record);
+          const { train_no, train_name, source, destination, fare, availability } = record;
+          const keys = [train_no, train_name, source, destination, fare, availability];
           keys.forEach(key => {
-            htmlData += `<td>${record[key]}</td>`;
+            htmlData += `<td>${key}</td>`;
           });
-          htmlData += `<td><button type="submit">Book</button></td>`;
+          htmlData += `<td><button class="btn btn-primary" onclick="alert(\`Booked ${keys[1]} Successfully\`)">Book</button></td>`;
           newRow.innerHTML = htmlData;
         });
         console.log(htmlData);
