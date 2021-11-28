@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="inner-box" id="card">
+          <div class="card-front">
+            <div class="card-back">
+                <h2>Register</h2>
+                <form action="Login.html" class="signin">
+                  <input
+                    type="text"
+                    class="input-box"
+                    placeholder="Your name"
+                    required
+                  />
+                  <input
+                    type="email"
+                    class="input-box"
+                    placeholder="Enter your email id"
+                    required
+                  />
+                  <input
+                    type="email"
+                    class="input-box"
+                    placeholder="Enter your email id"
+                    required
+                  />
+                  <button type="submit" class="submit-btn">submit</button><br />
+                  <br /><input type="checkbox" /><span>Remember Me</span>
+                </form>
+                <button type="button" class="btn" onclick="navigation(event)" "openLogin()">
+                  I've an account
+                </button>
+                <a href="">Forget Password</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <script>
+      var card = document.getElementById("card");
+
+      function openRegister() {
+        card.style.transform = "rotateY(-180deg)";
+      }
+      function openLogin() {
+        card.style.transform = "rotateY(0deg)";
+      }
+      function navigation (){
+		event.preventDefault();
+		location.href ="login.html"	}
+
+    </script>
+  </body>
+</html>
