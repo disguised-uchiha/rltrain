@@ -1,33 +1,54 @@
-import {
-  Router,
-  Request,
-  Response
-} from "express";
+import { Router, Request, Response } from "express";
+import { trainModel } from "src/models/train";
 
 const router = Router();
-const Train = require('../models/train');
 
-
-router.post("/add-train", (req: Request, res: Response) => {
-  const {
-    train_no,
-    train_name,
-    source,
-    destination,
-    fare,
-    availability
-  } = req.body;
-  console.log("🚀 >>> train_no, train_name, source, destination, fare, availability", train_no, train_name, source, destination, fare, availability);
-  res.status(200).json({
-    message: "success"
-  });
+router.post("/add", async (req: Request, res: Response) => {
+  const { train_no, train_name, source, destination, fare, availability } = req.body;
+  const resp = await trainModel.create({ train_no, train_name, source, destination, fare, availability });
+  return res.status(200).send(resp);
 });
 
-router.delete("/delete-train/:id", async (req, res) => {
+router.get("/check/:id",async (req,res)=>{
   try {
-    const deletedTrainRecord = await Train.findByIdAndDelete(req.params.id);
+      const results = await trainModel.find({_id : req.params.id});
+      if(!results){
+          console.log('No data found');
+          res.status(404).send("No data found");
+      } else {
+        console.log('Train data found successfully');
+        res.send(results);
+      }
+  } catch(error){
+      console.log('Error Occured while finding train record',error);
+      res.status(500).send("Issue Occurred at Server Side While Finding train record");
+  }
+})
 
-    console.log()
+router.patch("/update/:id", async (req,res)=>{
+  try {
+      const recordUpdates = Object.keys(req.body);
+      const record = await trainModel.findById(req.params.id);
+      recordUpdates.forEach((recordUpdate)=> record[recordUpdate] =  req.body[recordUpdate]);
+      await record.save();
+      
+      if(!record){
+          console.log("No record found with such id. Wrong ID");
+          res.status(400).send("NO record found with such id. Wrong ID");
+      } else {
+        console.log("Successfully updated the record info");
+      res.status(200).send("Successfully updated the record info");
+      }
+  } catch(error){
+      console.log("Error while updating the record",error);
+      res.status(400).send("Error while updating the record");
+  }
+})
+
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const deletedTrainRecord = await trainModel.findByIdAndDelete(req.params.id);
 
     if (!deletedTrainRecord) {
       console.log("No such train found");

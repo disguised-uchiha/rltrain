@@ -8,10 +8,10 @@ const mongodbConnectionString = `mongodb+srv://${user}:${password}@rltrainbacken
 
 const mongoConnect = async () => {
   try {
-    await mongoose.connect(mongodbConnectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, res => {
-      if (res) {
-        console.log("response => ", res);
-      }
+    await mongoose.connect(mongodbConnectionString, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, _ => {
+      // if (res) {
+      //   console.log("response => ", res);
+      // }
       console.log("MONGODB: Connection OK");
     });
   } catch (err) {

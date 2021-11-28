@@ -22,6 +22,6 @@ app.get("/", (_, res) => {
   });
 });
 
-app.use("/api", router);
+app.use("/train", router);
 
 export { app };
