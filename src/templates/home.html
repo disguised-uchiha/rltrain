@@ -11,7 +11,7 @@
     />
   </head>
 
-  <body>
+  <body onload="getAllData(events)">
     <div class="container">
       <h1 align="center">Welcome to Train Reservation System</h1>
 
@@ -27,14 +27,33 @@
             <th>Book Ticket</th>
           </tr>
         </thead>
-        <tbody onload="getAllData()"></tbody>
+        <tbody></tbody>
       </table>
     </div>
     <div></div>
     <script>
-      async function getAllData() {
+      async function getAllData(events) {
 		events.preventDefault();
-        const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        // const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+
+		console.log('kadsfjkasdjfkl')
+		const records = [
+			{
+				trainNo : 123,
+				trainName : 'godavari',
+				source : 'mumbai',
+				destination : 'varanasi',
+				fare : 123,
+				availability : 'yes',
+			},{
+				trainNo : 1223233,
+				trainName : 'godavdari1',
+				source : 'surat',
+				destination : 'jaipur',
+				fare : 123,
+				availability : 'no',
+			}
+		]
 
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
