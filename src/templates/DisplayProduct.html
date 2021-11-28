@@ -10,8 +10,68 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Train Data</h5>
+            <button type="button" class="close rounded-3 border-0 bg-danger text-white" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group mb-2">
+              <label for="train_no">Train No: </label>
+              <input type="text" name="train_no" class="form-control" type="number" />
+            </div>
+            <div class="form-group mb-2">
+              <label for="train_name">Train Name: </label>
+              <input type="text" name="train_name" class="form-control" />
+            </div>
+            <div class="form-group mb-2">
+              <label for="source">Source: </label>
+              <input type="text" name="source" class="form-control" />
+            </div>
+            <div class="form-group mb-2">
+              <label for="destination">Destination: </label>
+              <input type="text" name="destination" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="fare">Fare: </label>
+              <input type="number" name="fare" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="availability">Availability: </label>
+              <input type="number" name="availability" class="form-control" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- table -->
     <div class="container vh-100">
       <h1 class="text-center">All Available Products</h1>
       <div class="table-responsive">
@@ -30,14 +90,21 @@
         </table>
       </div>
     </div>
+
+    <!-- logic -->
     <script>
       function onEdit(id) {
         console.log(id);
+        $("#exampleModal").modal("toggle");
       }
       async function onDelete(id) {
-        const res = await fetch("http://localhost:8000/train/delete/" + id)
-          .then(res => res.json())
-          .then(data => console.log(data));
+        const confirmDeletion = confirm("Are you sure you want to delete this?");
+        if (confirmDeletion) {
+          const res = await await fetch("http://localhost:8000/train/delete/" + id, {
+            method: "DELETE"
+          });
+          location.reload();
+        }
       }
       document.addEventListener("DOMContentLoaded", async function (e) {
         e.preventDefault();
