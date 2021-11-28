@@ -1,7 +1,6 @@
 {
   "name": "rltrain-backend",
   "version": "1.0.0",
-  "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/index.ts",
@@ -33,5 +32,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.13.13",
     "node-env": "^0.1.6"
-  }
+  },
+  "main": "index.js",
+  "description": ""
 }
