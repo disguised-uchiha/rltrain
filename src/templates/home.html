@@ -32,6 +32,7 @@
     </div>
     <div></div>
     <script>
+<<<<<<< HEAD
       async function getAllData(events) {
 		events.preventDefault();
         // const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -54,20 +55,27 @@
 				availability : 'no',
 			}
 		]
+=======
+      console.log("testing");
+      async function getAllData(e) {
+        e.preventDefault();
+        const records = await fetch("http://localhost:8000/train/check");
+        console.log("🚀 >>> records", records);
+>>>>>>> 0336fbfafc8066b0b525ab24630ecdf33177fd35
 
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
         const newRow = tbodyRef.insertRow();
-		let htmlData = ""
-        newRow.innerHTML = records.forEach((record)=>{
-			htmlData.concat("tr")
-			record.forEach((data)=>{
-					htmlData.concat(`<td>${data}</td>`)
-			})
-			htmlData.concat("/tr")
-		});
-
+        let htmlData = "";
+        newRow.innerHTML = records.forEach(record => {
+          htmlData.concat("tr");
+          record.forEach(data => {
+            htmlData.concat(`<td>${data}</td>`);
+          });
+          htmlData.concat("/tr");
+        });
       }
+      getAllData();
     </script>
   </body>
 </html>

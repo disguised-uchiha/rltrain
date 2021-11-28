@@ -10,64 +10,66 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" /> -->
 
-    <!-- Bootstrap JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
     <style>
       body {
         margin: 30px;
         padding: 2rem;
-        font-family: sans-sarif;
-        background: url(AddProduct.jpg);
+        background: url("AddProduct.jpg");
+        font-family: "Lato", sans-serif;
       }
-
       .container {
-        position: relative;
-        max-width: 800px;
-        padding: 100px;
         background: rgba(255, 255, 255, 0.2);
+        color: white;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      }
-      .container h1 {
-        margin: 0 0 20px;
-        padding: 0;
-        font-size: 30px;
-        text-transform: upper-alpha;
-        color: yellow;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Enter Product Details</h1>
-      <form method="post" action="loginServlet">
-        TrainNo : <input type="text" name="name" /> <br />
-        <br />
-        Category : <input type="text" name="category" /> <br />
-        <br />
-        Price : <input type="text" name="price" /> <br />
-        <br />
-        Quantity : <input type="number" name="quantity" /> <br />
-        <br />
-        <input type="button" name="button" /> Submit
+    <div class="container p-5 rounded-3">
+      <h1>Enter Train Details</h1>
+
+      <form>
+        <div class="form-group mb-2">
+          <label for="train_no">Train No: </label>
+          <input type="text" name="train_no" class="form-control" type="number" />
+        </div>
+        <div class="form-group mb-2">
+          <label for="train_name">Train Name: </label>
+          <input type="text" name="train_name" class="form-control" />
+        </div>
+        <div class="form-group mb-2">
+          <label for="source">Source: </label>
+          <input type="text" name="source" class="form-control" />
+        </div>
+        <div class="form-group mb-2">
+          <label for="destination">Destination: </label>
+          <input type="text" name="destination" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+          <label for="fare">Fare: </label>
+          <input type="number" name="fare" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+          <label for="availability">Availability: </label>
+          <input type="number" name="availability" class="form-control" />
+        </div>
+        <button id="btn" type="submit" class="btn btn-primary me-2">ADD</button>
+        <button type="reset" class="btn btn-danger">CLEAR</button>
       </form>
-      <input id="btn" onclick="navigation(event)" type="submit" value="ADD" class="btn btn-primary" />
-
-      <input type="reset" class="btn btn-danger" value="CLEAR" />
-
-      <a href="/">Back</a>
     </div>
-    <div>
-      <script>
-        function navigation() {
-          event.preventDefault();
-          location.href = "displayProduct.html";
-        }
-      </script>
-    </div>
+    <script>
+      document.querySelector("form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const res = await fetch("http://localhost:8000/train/add")
+          .then(res => res.json())
+          .then(data => console.log(data));
+        console.log("🚀 >>> res", res);
+      });
+    </script>
   </body>
 </html>
