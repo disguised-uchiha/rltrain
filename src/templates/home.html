@@ -47,10 +47,9 @@
           keys.forEach(key => {
             htmlData += `<td>${key}</td>`;
           });
-          htmlData += `<td><button class="btn btn-primary" onclick="alert(\`Booked ${keys[1]} Successfully\`)">Book</button></td>`;
+          htmlData += `<td><button class="btn btn-primary" onclick="alert(\`Booked ${keys[1]} Successfully\`); location.href='http://127.0.0.1:5500/src/templates/bookTrain.html'">Book</button></td>`;
           newRow.innerHTML = htmlData;
         });
-        console.log(htmlData);
       });
     </script>
   </body>
