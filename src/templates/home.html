@@ -35,7 +35,7 @@
       console.log("testing");
       async function getAllData(e) {
         e.preventDefault();
-        const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        const records = await fetch("http://localhost:8000/train/check");
         console.log("🚀 >>> records", records);
 
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
