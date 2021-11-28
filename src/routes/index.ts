@@ -17,7 +17,7 @@ router.get("/check", async (_, res) => {
       res.status(404).send("No data found");
     } else {
       console.log("Train data found successfully");
-      res.send(results);
+      res.json(results);
     }
   } catch (error) {
     console.log("Error Occured while finding train record", error);
