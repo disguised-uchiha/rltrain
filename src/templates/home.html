@@ -34,7 +34,8 @@
     <script>
       document.addEventListener("DOMContentLoaded", async function (e) {
         e.preventDefault();
-        // const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+        const records = await fetch("https://05a3-2409-4040-d17-92ac-f559-54dc-25a1-9be9.ngrok.io/train/check");
+        console.log(`record type is ${Array.isArray(records)}`);
         // const records = [
         //   {
         //     trainNo: 123,
@@ -57,6 +58,7 @@
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
         let htmlData = "";
+        
         records.forEach(record => {
 			const newRow = tbodyRef.insertRow();
 			htmlData=""
