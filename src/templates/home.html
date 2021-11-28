@@ -14,61 +14,43 @@
   <body>
     <div class="container">
       <h1 align="center">Welcome to Train Reservation System</h1>
-
-      <table class="table" id="trainTable">
-        <thead>
-          <tr>
-            <th>Train Number</th>
-            <th>Train Name</th>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Fare</th>
-            <th>Availability</th>
-            <th>Book Ticket</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-striped" id="trainTable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Fare</th>
+              <th>Availability</th>
+              <th>Book Ticket</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
     <div></div>
     <script>
       document.addEventListener("DOMContentLoaded", async function (e) {
         e.preventDefault();
-        // const records = await fetch("mongodb+srv://nayan:Password@123@rltrainbackend.mo6u8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        // const records = [
-        //   {
-        //     trainNo: 123,
-        //     trainName: "godavari",
-        //     source: "mumbai",
-        //     destination: "varanasi",
-        //     fare: 123,
-        //     availability: "yes"
-        //   },
-        //   {
-        //     trainNo: 1223233,
-        //     trainName: "godavdari1",
-        //     source: "surat",
-        //     destination: "jaipur",
-        //     fare: 123,
-        //     availability: "no"
-        //   }
-        // ];
-		// records = JSON.parse(records);
+        const records = await (await fetch("http://localhost:8000/train/check")).json();
         const tbodyRef = document.getElementById("trainTable").getElementsByTagName("tbody")[0];
         // Insert a row at the end of table
         let htmlData = "";
         records.forEach(record => {
-			const newRow = tbodyRef.insertRow();
-			htmlData=""
-		  const keys = Object.keys(record);
+          const newRow = tbodyRef.insertRow();
+          htmlData = "";
+          const { train_no, train_name, source, destination, fare, availability } = record;
+          const keys = [train_no, train_name, source, destination, fare, availability];
           keys.forEach(key => {
-            htmlData+= `<td>${record[key]}</td>`;
+            htmlData += `<td>${key}</td>`;
           });
-		  htmlData +=`<td><button type="submit">Book</button></td>`
-		  newRow.innerHTML = htmlData
-
+          htmlData += `<td><button class="btn btn-primary" onclick="alert(\`Booked ${keys[1]} Successfully\`)">Book</button></td>`;
+          newRow.innerHTML = htmlData;
         });
-		console.log(htmlData)
+        console.log(htmlData);
       });
     </script>
   </body>
